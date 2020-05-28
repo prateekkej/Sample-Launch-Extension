@@ -1,0 +1,24 @@
+{
+  "displayName": "Load Scripts in Head",
+  "name": "load-scripts-in-head",
+  "platform": "web",
+  "version": "1.0.0",
+  "description": "Use this extension to load your scripts in the head tag of your webpage",
+  "author": {
+    "name": "Prateek Kejriwal"
+  },
+  "viewBasePath": "src/view/",
+  "actions": [
+    {
+      "displayName": "Load Script",
+      "name": "load-script",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/actions/loadScript.js",
+      "viewPath": "actions/loadScript.html"
+    }
+  ]
+}

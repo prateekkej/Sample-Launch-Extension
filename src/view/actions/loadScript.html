@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Action</title>
+</head>
+
+<body>
+  <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+
+  <h1>Please select the Script loading method</h1>
+  <table>
+    <tr>
+      <td><input type="radio" name="loadmethod" value="url" id="methodUrl"></td>
+      <td>URL </td>
+      <td><input type="url" id="urlBox"></td>
+    </tr>
+    <tr>
+      <td><input type="radio" name="loadmethod" value="code" id="methodCode"></td>
+      <td>
+        Java Script Code Input
+      </td>
+      <td>
+        <input type="button" name="loadmethod" value="Open Code Editor" onclick="openCodeEditor(this);">
+      </td>
+    </tr>
+
+  </table>
+  <script>
+    var code = undefined;
+    window.extensionBridge.register({
+      init: function (info) {
+        if (info.settings) {
+          if (info.settings.method === "url") {
+            document.getElementById("urlBox").value = info.settings.value;
+            document.getElementById("methodUrl").checked = true;
+          }
+          if (info.settings.method === "code") {
+            code = info.settings.value;
+            document.getElementById("methodCode").checked = true;
+          }
+
+        }
+      },
+
+      getSettings: function () {
+        var checkedMethod = "";
+        document.getElementsByName("loadmethod").forEach(c => {
+          if (c.checked) {
+            checkedMethod = c.value
+          }
+        })
+        var val = undefined;
+        if (checkedMethod === "url") {
+          val = document.getElementById("urlBox").value;
+
+        } else if (checkedMethod === "code") {
+          val = code;
+
+        }
+        return { value: val, method: checkedMethod };
+      },
+
+      validate: function () {
+        var checkedMethod = undefined;
+        document.getElementsByName("loadmethod").forEach(c => {
+          if (c.checked) {
+            checkedMethod = c.value
+          }
+        });
+        if (!checkedMethod) {
+          alert("Please check method for script load")
+          return false;
+        } else {
+          var val = undefined;
+        if (checkedMethod === "url") {
+          val = document.getElementById("urlBox").value;
+          if(!val.startsWith("https://")){
+            val=undefined;
+          }
+
+        } else if (checkedMethod === "code") {
+          val = code;
+
+        }
+          return val && val!==""?true:false;
+        }
+      }
+    });
+
+    openCodeEditor = (event) => {
+      window.extensionBridge.openCodeEditor({ code: code, language: "javascript" }).then((newCode) => {
+        code = newCode;
+      });
+    }
+  </script>
+
+</body>
+
+</html>
