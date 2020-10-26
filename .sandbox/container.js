@@ -1,19 +1,19 @@
 module.exports = {
   "dataElements": {},
   "rules": [{
-    "id": "RL1590687111000",
-    "actions": [{
-      "modulePath": "load-scripts-in-head/src/lib/actions/loadScript.js",
-      "settings": {
-        "value": "console.log(\"hello\");",
-        "method": "code"
-      }
-    }],
+    "id": "RL1603728142864",
+    "name": "Home",
     "events": [{
       "modulePath": "sandbox/pageTop.js",
       "settings": {}
     }],
-    "name": "asd"
+    "actions": [{
+      "modulePath": "load-scripts-in-head/src/lib/actions/loadScript.js",
+      "settings": {
+        "value": "https://assets.adobedtm.com/7b4b60abf672/7a8c22ed9c5e/launch-ad8b308e66b5-development.min.js",
+        "method": "url"
+      }
+    }]
   }],
   "extensions": {},
   "property": {
@@ -25,9 +25,9 @@ module.exports = {
     "orgId": "ABCDEFGHIJKLMNOPQRSTUVWX@AdobeOrg"
   },
   "buildInfo": {
-    "turbineVersion": "25.8.0",
-    "turbineBuildDate": "2020-05-28T17:31:53.719Z",
-    "buildDate": "2020-05-28T17:31:53.719Z",
+    "turbineVersion": "26.0.2",
+    "turbineBuildDate": "2020-10-26T16:02:24.288Z",
+    "buildDate": "2020-10-26T16:02:24.288Z",
     "environment": "development"
   }
 }
